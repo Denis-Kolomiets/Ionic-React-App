@@ -1,0 +1,17 @@
+.muiDrawerRoot {
+  font-family: 'Manrope', sans-serif;
+
+  &:global(.MuiDrawer-root) {
+    z-index: 1300;
+  }
+
+  :global(.MuiModal-backdrop) {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  :global(.MuiPaper-root) {
+    background: #19192b;
+    color: white;
+  }
+}

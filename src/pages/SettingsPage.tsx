@@ -1,5 +1,5 @@
 import { IonButton } from '@ionic/react';
-import MainPageLayout from '../shared/main-page-layout';
+import MainPageLayout from '../shared/components/main-page-layout';
 
 import { auth } from '../firebase';
 

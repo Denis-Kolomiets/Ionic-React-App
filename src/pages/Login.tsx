@@ -22,7 +22,8 @@ import { useState } from 'react';
 
 interface ILoginPage {}
 const LoginPage: React.FC<ILoginPage> = () => {
-  const { loggedIn } = useAuth();
+  const authStage = useAuth();
+
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -48,7 +49,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
     });
   };
 
-  if (loggedIn) {
+  if (authStage.loggedIn) {
     return <Redirect to={'/my/entries'} />;
   }
 

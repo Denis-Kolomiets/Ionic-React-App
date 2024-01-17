@@ -1,5 +1,5 @@
 import { IonIcon, IonItem, IonList, IonNavLink } from '@ionic/react';
-import MenuLayout from '../../../shared/app-menu/menu-layout';
+import MenuLayout from '../../../shared/components/app-menu/menu-layout';
 import { logoReact, logoAngular, logoVue, logoIonic, logoApple } from 'ionicons/icons';
 
 import styles from './style.module.scss';

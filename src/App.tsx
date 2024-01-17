@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import LoginPage from './pages/Login';
 import { AuthContext, useAuthInit } from './context/auth';
 import AppTabs from './AppTabs';
-import MenuNav from './shared/menu-nav';
+import MenuNav from './shared/components/menu-nav';
 import NavMenuService from './services/nav-menu';
 import SignPage from './pages/SignUp';
 
@@ -13,7 +13,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { loading, loggedIn } = useAuthInit();
+  const { loading, auth } = useAuthInit();
   if (loading) {
     return <IonLoading isOpen />;
   }
@@ -23,7 +23,7 @@ const App: React.FC = () => {
       ref={(nav) => NavMenuService.changeNavigator(nav)}
       root={() => (
         <IonApp>
-          <AuthContext.Provider value={{ loggedIn: loggedIn }}>
+          <AuthContext.Provider value={{ loggedIn: auth.loggedIn, userId: auth.userId }}>
             <IonReactRouter>
               <Switch>
                 <Route exact path={'/login'}>

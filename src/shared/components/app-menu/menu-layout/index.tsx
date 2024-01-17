@@ -1,6 +1,6 @@
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonToolbar } from '@ionic/react';
-import NavMenuService from '../../../services/nav-menu';
-import closeIcon from '../../../assets/image/close-icon.svg';
+import NavMenuService from '../../../../services/nav-menu';
+import closeIcon from '../../../../assets/image/close-icon.svg';
 import styles from './style.module.scss';
 
 interface IAppMenuLayout {

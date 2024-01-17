@@ -1,17 +1,31 @@
 import { useParams } from 'react-router';
-import { entries } from '../data/data';
-import SecondPageLayout from '../shared/second-page-layout';
+import SecondPageLayout from '../shared/components/second-page-layout';
+import { firestore } from '../firebase';
+import { useEffect, useState } from 'react';
+import { IEntry, toEntry } from '../shared/interface/models';
+import { useAuth } from '../context/auth';
+
 interface ISettingsPage {}
+
 interface RouteParams {
   id: string;
 }
 const EntriesPage: React.FC<ISettingsPage> = () => {
   const { id } = useParams<RouteParams>();
-  const entry = entries.find((item) => item.id === id);
-  if (!entry) {
-    throw new Error('No find id entry');
-  }
-  return <SecondPageLayout title={entry.title}></SecondPageLayout>;
+  const { userId } = useAuth();
+  const [entry, setEntry] = useState<IEntry>();
+  useEffect(() => {
+    const entryRef = firestore.collection('users').doc(userId).collection('entries').doc(id);
+    entryRef.get().then((item) => {
+      setEntry(toEntry(item));
+    });
+  }, [id, userId]);
+
+  return (
+    <SecondPageLayout title={entry?.title}>
+      <p>{entry?.description}</p>
+    </SecondPageLayout>
+  );
 };
 
 export default EntriesPage;

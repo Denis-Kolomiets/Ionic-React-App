@@ -3,12 +3,12 @@ import { auth } from '../firebase';
 
 interface IAuth {
   loggedIn: boolean;
+  userId?: string;
 }
 
 interface IAuthInit {
   loading: boolean;
-  loggedIn: boolean;
-  userId?: string;
+  auth?: IAuth;
 }
 
 export const AuthContext = React.createContext<IAuth>({ loggedIn: false });
@@ -18,16 +18,15 @@ export const useAuth = (): IAuth => {
 };
 
 export const useAuthInit = (): IAuthInit => {
-  const [authState, setAuthState] = useState<IAuthInit>({ loading: true, loggedIn: false });
+  const [authState, setAuthState] = useState<IAuthInit>({ loading: true, auth: { loggedIn: false } });
   useEffect(() => {
     auth.onAuthStateChanged((firebaseUser) => {
       const auth = firebaseUser ? { loggedIn: true, userId: firebaseUser.uid } : { loggedIn: false };
       setAuthState({
         loading: false,
-        ...auth,
+        auth,
       });
     });
   }, []);
-
   return authState;
 };

@@ -1,6 +1,6 @@
 import { IonNavLink } from '@ionic/react';
 import MenuLayout from './menu-layout';
-import SecondPage from '../../components/sidebar/second-page';
+import SecondPage from '../../../components/sidebar/second-page';
 
 const AppMenu = () => {
   return (

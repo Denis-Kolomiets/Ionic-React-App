@@ -20,8 +20,8 @@ import { auth } from '../firebase';
 import styles from './login.module.scss';
 import { useState } from 'react';
 
-interface ILoginPage {}
-const LoginPage: React.FC<ILoginPage> = () => {
+interface ISignPage {}
+const SignPage: React.FC<ISignPage> = () => {
   const { loggedIn } = useAuth();
   const [form, setForm] = useState({
     email: '',
@@ -36,8 +36,8 @@ const LoginPage: React.FC<ILoginPage> = () => {
     });
   };
 
-  const handleLogin = async () => {
-    await auth.signInWithEmailAndPassword(form.email, form.password).catch((e) => presentToast('top', 'Invalid email or password'));
+  const handleSignUp = async () => {
+    await auth.createUserWithEmailAndPassword(form.email, form.password).catch((e) => presentToast('top', e.message));
   };
 
   const presentToast = (position: 'top' | 'middle' | 'bottom', error: string) => {
@@ -56,7 +56,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
     <IonPage className={styles.login}>
       <IonHeader>
         <IonToolbar className={styles.toolbar}>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Sign Up</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
@@ -78,15 +78,15 @@ const LoginPage: React.FC<ILoginPage> = () => {
               onIonInput={(value) => onChangeForm('password', value.target.value)}></IonInput>
           </IonItem>
         </IonList>
-        <IonButton id="open-toast" className={styles.loginBtn} expand="block" onClick={handleLogin}>
-          Login
+        <IonButton id="open-toast" className={styles.loginBtn} expand="block" onClick={handleSignUp}>
+          Sign Up
         </IonButton>
-        <IonRouterLink routerLink="/sign" className={styles.link}>
-          Sign Up account
+        <IonRouterLink className={styles.link} routerLink="/login">
+          Login my account
         </IonRouterLink>
       </IonContent>
     </IonPage>
   );
 };
 
-export default LoginPage;
+export default SignPage;

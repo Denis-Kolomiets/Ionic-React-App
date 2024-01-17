@@ -1,4 +1,14 @@
 .login {
   ion-toolbar {
   }
+
+  .loginBtn {
+    margin-top: 20px;
+  }
+
+  .link {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
 }

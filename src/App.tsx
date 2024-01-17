@@ -1,30 +1,36 @@
-import { IonApp, IonNav, setupIonicReact } from '@ionic/react';
+import { IonApp, IonLoading, IonNav, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route, Switch, useLocation } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import LoginPage from './pages/Login';
-import { AuthContext } from './context/auth';
-import { useState } from 'react';
+import { AuthContext, useAuthInit } from './context/auth';
 import AppTabs from './AppTabs';
 import MenuNav from './shared/menu-nav';
 import NavMenuService from './services/nav-menu';
+import SignPage from './pages/SignUp';
 
 setupIonicReact({
   mode: 'ios',
 });
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loading, loggedIn } = useAuthInit();
+  if (loading) {
+    return <IonLoading isOpen />;
+  }
 
   return (
     <IonNav
       ref={(nav) => NavMenuService.changeNavigator(nav)}
       root={() => (
         <IonApp>
-          <AuthContext.Provider value={{ loggedIn }}>
+          <AuthContext.Provider value={{ loggedIn: loggedIn }}>
             <IonReactRouter>
               <Switch>
                 <Route exact path={'/login'}>
-                  <LoginPage onLogin={() => setLoggedIn(true)} />
+                  <LoginPage />
+                </Route>
+                <Route exact path={'/sign'}>
+                  <SignPage />
                 </Route>
                 <Route path={'/my'}>
                   <AppTabs />

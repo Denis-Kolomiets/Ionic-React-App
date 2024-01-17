@@ -1,17 +1,22 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonModal, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { useState } from 'react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/react';
 
 interface IModalWindowLayout {
   modalRef: any;
   trigger: string;
+  presentingElement?: HTMLElement | null;
 }
 
-const ModalWindowLayout: React.FC<IModalWindowLayout> = ({ modalRef, trigger }) => {
-  function dismiss() {
+const ModalWindowLayout: React.FC<IModalWindowLayout> = ({ modalRef, trigger, presentingElement }) => {
+  const dismiss = () => {
     modalRef.current?.dismiss();
+  };
+
+  async function canDismiss(data?: any, role?: string) {
+    return role !== 'gesture';
   }
+
   return (
-    <IonModal ref={modalRef} trigger={trigger} initialBreakpoint={0.8}>
+    <IonModal ref={modalRef} trigger={trigger} presentingElement={presentingElement!} canDismiss={canDismiss}>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Modal</IonTitle>

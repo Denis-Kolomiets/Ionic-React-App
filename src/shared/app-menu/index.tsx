@@ -1,22 +1,15 @@
 import { IonNavLink } from '@ionic/react';
-import AppMenuLayout from './app-menu-layout';
+import MenuLayout from './menu-layout';
+import SecondPage from '../../components/sidebar/second-page';
 
 const AppMenu = () => {
   return (
-    <AppMenuLayout back={false}>
-      <IonNavLink routerDirection="forward" component={() => <PageTwo />}>
+    <MenuLayout back={false}>
+      <IonNavLink routerDirection="forward" component={() => <SecondPage />}>
         Go to second menu item
       </IonNavLink>
-    </AppMenuLayout>
+    </MenuLayout>
   );
 };
 
 export default AppMenu;
-
-const PageTwo = () => {
-  return (
-    <AppMenuLayout>
-      <div>Second Page Menu</div>
-    </AppMenuLayout>
-  );
-};

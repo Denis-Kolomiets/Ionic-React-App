@@ -1,14 +1,4 @@
-import {
-  IonBackButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  RouterDirection,
-  useIonRouter,
-} from '@ionic/react';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonRouter } from '@ionic/react';
 
 interface ISecondPageLayout {
   children?: JSX.Element;

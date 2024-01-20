@@ -23,7 +23,7 @@ const App: React.FC = () => {
       ref={(nav) => NavMenuService.changeNavigator(nav)}
       root={() => (
         <IonApp>
-          <AuthContext.Provider value={{ loggedIn: auth.loggedIn, userId: auth.userId }}>
+          <AuthContext.Provider value={{ loggedIn: auth?.loggedIn, userId: auth?.userId }}>
             <IonReactRouter>
               <Switch>
                 <Route exact path={'/login'}>

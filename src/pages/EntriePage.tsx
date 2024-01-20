@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { IEntry, toEntry } from '../shared/interface/models';
 import { useAuth } from '../context/auth';
 
-interface ISettingsPage {}
+interface IEntriesPage {}
 
 interface RouteParams {
   id: string;
 }
-const EntriesPage: React.FC<ISettingsPage> = () => {
+const EntriesPage: React.FC<IEntriesPage> = () => {
   const { id } = useParams<RouteParams>();
   const { userId } = useAuth();
   const [entry, setEntry] = useState<IEntry>();

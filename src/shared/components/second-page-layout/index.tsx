@@ -1,4 +1,5 @@
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonRouter } from '@ionic/react';
+import styles from './style.module.scss';
 
 interface ISecondPageLayout {
   children?: JSX.Element;
@@ -14,7 +15,7 @@ const SecondPageLayout: React.FC<ISecondPageLayout> = ({ children, title }) => {
   };
 
   return (
-    <IonPage>
+    <IonPage className={styles.pageLayout}>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start" onClick={navigateBack}>
@@ -23,7 +24,7 @@ const SecondPageLayout: React.FC<ISecondPageLayout> = ({ children, title }) => {
           <IonTitle>{title}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>{children}</IonContent>
+      <IonContent className="ion-padding">{children}</IonContent>
     </IonPage>
   );
 };

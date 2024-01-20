@@ -9,6 +9,13 @@ interface IAppMenuLayout {
 }
 
 const MenuLayout: React.FC<IAppMenuLayout> = ({ children, back = true }) => {
+  const onPopToRoot = () => {
+    const nav = NavMenuService.getNavigator();
+    if (nav !== null) {
+      nav.popToRoot();
+    }
+  };
+
   return (
     <>
       <IonHeader className={styles.menuHeader}>
@@ -18,7 +25,7 @@ const MenuLayout: React.FC<IAppMenuLayout> = ({ children, back = true }) => {
               <IonBackButton text="Back"></IonBackButton>
             </IonButtons>
           )}
-          <IonButtons slot="end" onClick={() => NavMenuService.getNavigator().popToRoot()}>
+          <IonButtons slot="end" onClick={onPopToRoot}>
             <IonIcon icon={closeIcon} className={styles.closeIcon} />
           </IonButtons>
         </IonToolbar>

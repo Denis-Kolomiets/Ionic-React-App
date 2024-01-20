@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import EntriesPage from './pages/EntriePage';
 import { useAuth } from './context/auth';
+import AddEntryPage from './pages/add-entry/add-entry-page';
 
 interface IAppTabs {}
 
@@ -21,7 +22,8 @@ const AppTabs: React.FC<IAppTabs> = () => {
           <HomePage />
         </Route>
         <Route exact path={'/my/settings'} component={SettingsPage} />
-        <Route exact path={'/my/entries/:id'} component={EntriesPage} />
+        <Route exact path={'/my/entries/view/:id'} component={EntriesPage} />
+        <Route exact path={'/my/entries/add'} component={AddEntryPage} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/my/entries">

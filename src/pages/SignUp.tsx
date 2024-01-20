@@ -4,12 +4,10 @@ import {
   IonHeader,
   IonInput,
   IonItem,
-  IonLabel,
   IonList,
   IonPage,
   IonRouterLink,
   IonTitle,
-  IonToast,
   IonToolbar,
   useIonToast,
 } from '@ionic/react';
@@ -29,7 +27,7 @@ const SignPage: React.FC<ISignPage> = () => {
   });
   const [present] = useIonToast();
 
-  const onChangeForm = (key: string, value: string | number) => {
+  const onChangeForm = (key: string, value: string | number | null | undefined) => {
     setForm({
       ...form,
       [key]: value,

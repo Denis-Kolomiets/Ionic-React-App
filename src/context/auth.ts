@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { auth } from '../firebase';
 
 interface IAuth {
-  loggedIn: boolean;
+  loggedIn?: boolean;
   userId?: string;
 }
 
